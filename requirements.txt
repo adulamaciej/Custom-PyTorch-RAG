@@ -8,3 +8,5 @@ fastapi
 uvicorn
 streamlit
 pytest
+ragas
+langchain-community==0.4.1

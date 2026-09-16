@@ -4,7 +4,7 @@ A custom Retrieval-Augmented Generation (RAG) system for answering questions abo
 
 The project demonstrates the internal mechanics of a production-style RAG pipeline without relying on high-level orchestration frameworks.
 
-The system combines **structure-aware chunking, BGE embeddings, hybrid retrieval with BM25 and vector search, RRF fusion, cross-encoder reranking, and OpenAI-powered LLM generation with source citations, exposed through FastAPI and a Streamlit interface.**
+The system combines structure-aware chunking, BGE embeddings, hybrid retrieval with BM25 and vector search, RRF fusion, cross-encoder reranking, RAGAS evaluation (Faithfulness: 0.861, Answer Relevancy: 0.778, Context Precision: 0.756), and OpenAI-powered LLM generation with source citations, exposed through FastAPI and a Streamlit interface.
 
 ## Detailed architecture
 
@@ -48,9 +48,12 @@ Vector Search          BM25 Search
 - Top-K context construction
 - Source citations
 - OpenAI-based answer generation
+- RAG evaluation with RAGAS
+- Evaluation on 6 curated PyTorch questions
 - FastAPI REST API
 - Streamlit interface
 - Pytest tests
+
 
 ## Tech Stack
 
@@ -67,6 +70,7 @@ Vector Search          BM25 Search
 - Streamlit
 - Pytest
 - Docker
+- RAGAS
 
 ## Project Structure
 
@@ -99,6 +103,11 @@ app/
 │   └── reranker.py
 ├── config.py
 └── rag.py
+│   ├── rrf.py
+│   └── reranker.py
+evaluation/
+├── questions.json
+└── evaluate_ragas.py
 
 scripts/
 ├── download_docs.py
@@ -119,6 +128,20 @@ The system combines two retrieval methods:
 The rankings are combined using **Reciprocal Rank Fusion (RRF)**.
 
 The fused candidates are then scored by a **cross-encoder reranker**, and the final Top-K chunks are passed to the LLM as context.
+
+## Evaluation
+
+The RAG pipeline was evaluated on 6 curated PyTorch documentation questions using RAGAS.
+
+| Metric | Score |
+|---|---:|
+| Faithfulness | 0.861 |
+| Answer Relevancy | 0.798 |
+| Context Precision | 0.786 |
+
+- **Faithfulness** measures whether generated answers are supported by the retrieved context.
+- **Answer Relevancy** measures how well the generated answer addresses the user question.
+- **Context Precision** measures the quality and relevance of retrieved context.
 
 ## Installation
 

@@ -1,0 +1,27 @@
+[
+  {
+    "question": "How do I disable gradient computation in PyTorch?",
+    "reference_answer": "Gradient computation can be disabled with torch.no_grad(), torch.inference_mode(), torch.set_grad_enabled(False), or by controlling requires_grad depending on the use case."
+  },
+  {
+    "question": "What is the difference between torch.no_grad() and torch.inference_mode()?",
+    "reference_answer": "Both disable gradient tracking, but inference mode is more restrictive and can provide additional performance benefits during inference."
+  },
+  {
+    "question": "How does torch.compile work?",
+    "reference_answer": "torch.compile captures and optimizes PyTorch programs using compiler backends such as TorchInductor to improve execution performance."
+  },
+  {
+    "question": "How do I clip gradients in PyTorch?",
+    "reference_answer": "Gradient clipping can be performed with utilities such as torch.nn.utils.clip_grad_norm_ or torch.nn.utils.clip_grad_value_."
+  },
+  {
+    "question": "What does DataLoader do in PyTorch?",
+    "reference_answer": "DataLoader provides an iterable over a dataset and supports batching, shuffling, multiprocessing, and automatic memory pinning."
+  },
+  {
+    "question": "How do I move a tensor to a GPU in PyTorch?",
+    "reference_answer": "A tensor can be moved to a GPU using methods such as tensor.to('cuda') or tensor.cuda() when CUDA is available."
+  }
+  
+]
