@@ -2,9 +2,11 @@
 
 A custom Retrieval-Augmented Generation (RAG) system for answering questions about the official PyTorch documentation.
 
-The project implements the retrieval pipeline without LangChain or LangGraph to demonstrate the internal mechanics of modern RAG systems.
+The project demonstrates the internal mechanics of a production-style RAG pipeline without relying on high-level orchestration frameworks.
 
-## Architecture
+The system combines **structure-aware chunking, BGE embeddings, hybrid retrieval with BM25 and vector search, RRF fusion, cross-encoder reranking, and OpenAI-powered LLM generation with source citations, exposed through FastAPI and a Streamlit interface.**
+
+## Detailed architecture
 
 ```text
 PyTorch HTML Documentation
@@ -155,8 +157,6 @@ OPENAI_API_KEY=your_api_key_here
 OPENAI_MODEL=your_model_name
 ```
 
-Do not commit `.env`.
-
 ## Download PyTorch Documentation
 
 ```bash
@@ -198,11 +198,3 @@ http://127.0.0.1:8000/docs
 ```text
 How do I disable gradient computation?
 ```
-
-The system retrieves relevant sections from the PyTorch documentation, combines BM25 and vector search results, reranks the candidates, builds the final context, and generates an answer with sources.
-
-## Why This Project?
-
-The goal of this project is to demonstrate the internal mechanics of a production-style RAG pipeline instead of relying on high-level orchestration frameworks.
-
-It includes custom document ingestion, hybrid retrieval, rank fusion, reranking, context construction, answer generation, API access, and a simple UI.
